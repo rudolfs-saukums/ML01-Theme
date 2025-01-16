@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page>
+    <body>
+        <referenceBlock name="magemastery.first.layout.example">
+            <arguments>
+                <argument
+                    name="view_model"
+                    xsi:type="object">MageMastery\ViewModelExample\ViewModel\ProductViewModel</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>
