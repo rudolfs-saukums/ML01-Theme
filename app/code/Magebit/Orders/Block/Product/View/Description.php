@@ -1,4 +1,12 @@
 <?php
+/**
+ * @copyright Copyright (c) 2025 Magebit (https://magebit.com/)
+ * @author    <info@magebit.com>
+ * @license   GNU General Public License ("GPL") v3.0
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Magebit\Orders\Block\Product\View;
 
@@ -9,10 +17,21 @@ use Magento\Framework\View\Element\Template\Context;
 
 class Description extends Template
 {
-    protected $_product = null;
+    /**
+     * @var Product|null
+     */
+    protected ?Product $_product = null;
 
-    protected $_coreRegistry = null;
+    /**
+     * @var Registry|null
+     */
+    protected ?Registry $_coreRegistry = null;
 
+    /**
+     * @param Context $context
+     * @param Registry $registry
+     * @param array $data
+     */
     public function __construct(
         Context $context,
         Registry $registry,
@@ -27,7 +46,7 @@ class Description extends Template
      *
      * @return Product|null
      */
-    public function getProduct()
+    public function getProduct(): ?Product
     {
         if (!$this->_product) {
             $this->_product = $this->_coreRegistry->registry('product');

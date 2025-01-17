@@ -1,16 +1,20 @@
 <?php
 /**
- * Copyr.getElementById('ght © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * @copyright Copyright (c) 2025 Magebit (https://magebit.com/)
+ * @author    <info@magebit.com>
+ * @license   GNU General Public License ("GPL") v3.0
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-/** @var $block \Magento\Catalog\Block\Product\View */
+/** @var \Magento\Catalog\Block\Product\View $block */
 ?>
-<?php $_product = $block->getProduct(); ?>
+<?php $product = $block->getProduct(); ?>
 <?php $buttonTitle = __('Add to Cart'); ?>
-<?php if ($_product->isSaleable()) :?>
-    <?php $stockQty = (int)$_product->getExtensionAttributes()->getStockItem()->getQty(); ?>
-<div class="box-tocart">
+<?php if ($product->isSaleable()) :?>
+    <?php $stockQty = (int)$product->getExtensionAttributes()->getStockItem()->getQty(); ?>
+<div class="box-tocart" data-mage-init='{"qty": {}}'>
     <div class="fieldset">
         <?php if ($block->shouldRenderQuantity()) :?>
         <div class="field qty">
@@ -28,7 +32,8 @@
             </div>
             <button type="button" id="add-qty" class="qty-increase">+</button>
             <div class="stock-info">
-                <span class="stock-checkmark">✔</span>
+                <img class="stock-checkmark"
+                     src="<?= $block->getViewFileUrl('images/checkmark.svg'); ?>"
                 <h4 class="stock-heading">IN STOCK </h4>
                 <span class="stock-text">
                     <?= __(' %1 items in stock', $stockQty) ?>
