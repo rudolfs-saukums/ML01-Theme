@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+    @copyright Copyright (c) 2025 Magebit (https://magebit.com/)
+    @author    <info@magebit.com>
+    @license   GNU General Public License ("GPL") v3.0
+    For the full copyright and license information, please view the LICENSE
+    file that was distributed with this source code.
+-->
+
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.addtocart" template="Magento_Catalog::addtocart.phtml">
+        </referenceBlock>
+
+        <move element="product.info.sku" destination="product.info.price" after="product.price.final" />
+        <referenceBlock name="product.info.stock.sku" remove="true"/>
+
+        <referenceContainer name="product.info.main">
+            <block class="Magebit\Orders\Block\Product\View\Description" name="product.info.test" template="Magento_Catalog::list/attribute.phtml" after="product.info.price"/>
+        </referenceContainer>
+        <referenceBlock name="product.info.details" remove="true"/>
+
+        <referenceContainer name="product.info.type">
+            <block class="Magebit\Orders\Block\Product\View\Stock" name="product.info.stock.quantity" template="Magento_Catalog::list/Stock.phtml" after="product.info.sku"/>
+        </referenceContainer>
+        <referenceBlock name="product.info.overview" remove="true"/>
+
+        <move element="product.info.upsell" destination="product.info.social"/>
+        <referenceBlock name="product.info.upsell" template="Magento_Catalog::list/items.phtml"/>
+
+        <referenceBlock name="product.info.addto" remove="true"/>
+
+        <referenceContainer name="content">
+            <block class="Magento\Catalog\Block\Product\ProductList\Related" name="catalog.product.related" template="Magento_Catalog::list/items.phtml">
+                <arguments>
+                    <argument name="type" xsi:type="string">related</argument>
+                    <argument name="view_model" xsi:type="object">Magento\Catalog\ViewModel\Product\Listing\PreparePostData</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
