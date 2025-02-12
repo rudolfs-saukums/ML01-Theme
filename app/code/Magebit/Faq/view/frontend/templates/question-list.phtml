@@ -1,0 +1,38 @@
+<?php
+/**
+ * @copyright Copyright (c) 2025 Magebit (https://magebit.com/)
+ * @author    <info@magebit.com>
+ * @license   GNU General Public License ("GPL") v3.0
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/** @var \Magebit\Faq\Block\QuestionList $block */
+$questions = $block->getFaqItems();
+?>
+
+<div class="faq-wrapper">
+    <?php if (is_array($questions)): ?>
+        <div id="accordion" data-mage-init='{
+            "accordion":{
+                "active": [],
+                "collapsible": true,
+                "openedState": "active",
+                "multipleCollapsible": false
+            }}'>
+            <?php foreach ($questions as $question): ?>
+                <div class="question-wrapper" data-role="collapsible">
+                    <div class="question" data-role="trigger">
+                        <?= $question['question'] ?>
+                    </div>
+                    <div class="answer" data-role="content">
+                        <?= $question['answer'] ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <div class="no-questions">We're sorry, but list is not available...</div>
+    <?php endif; ?>
+</div>
