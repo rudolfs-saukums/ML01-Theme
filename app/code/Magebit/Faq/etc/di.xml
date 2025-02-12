@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+    @copyright Copyright (c) 2025 Magebit (https://magebit.com/)
+    @author    <info@magebit.com>
+    @license   GNU General Public License ("GPL") v3.0
+    For the full copyright and license information, please view the LICENSE
+    file that was distributed with this source code.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+        <preference for="Magebit\Faq\Api\Data\QuestionInterface" type="Magebit\Faq\Model\Question"/>
+        <preference for="Magebit\Faq\Api\QuestionRepositoryInterface" type="Magebit\Faq\Model\QuestionRepository"/>
+        <preference for="Magebit\Faq\Api\Data\QuestionSearchResultsInterface" type="Magebit\Faq\Model\SearchResultsRepository"/>
+        <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+            <arguments>
+                <argument name="collections" xsi:type="array">
+                    <item name="magebit_faq_question_listing_data_source" xsi:type="string">Magebit\Faq\Model\ResourceModel\Question\Collection</item>
+                </argument>
+            </arguments>
+        </type>
+</config>
